@@ -32,8 +32,15 @@ abstract class Command {
 }
 
 class Project {
-  final List<String> PUB_FOLDERS = [
-    'benchmark', 'bin', 'example', 'lib', 'test', 'tool', 'web'
+  static List<String> _pubFolders;
+  static List<String> get PUB_FOLDERS => _pubFolders ??= []..addAll(PUB_DEV_FOLDERS)..addAll(PUB_PROD_FOLDERS);
+
+  static final List<String> PUB_PROD_FOLDERS = [
+    'bin', 'lib', 'web'
+  ];
+
+  static final List<String> PUB_DEV_FOLDERS = [
+    'benchmark', 'example', 'test', 'tool'
   ];
 
   final Directory dir;

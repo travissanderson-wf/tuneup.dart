@@ -16,6 +16,7 @@ import 'package:path/path.dart' as p;
 import 'src/check_command.dart';
 import 'src/clean_command.dart';
 import 'src/common.dart';
+import 'src/dep_check_command.dart';
 import 'src/init_command.dart';
 import 'src/stats_command.dart';
 import 'src/trim_command.dart';
@@ -36,6 +37,7 @@ class Tuneup {
     _addCommand(new StatsCommand());
     _addCommand(new TrimCommand());
     _addCommand(new CleanCommand());
+    _addCommand(new DepCheckCommand());
   }
 
   void _addCommand(Command command) {
@@ -153,6 +155,9 @@ class Tuneup {
 
     // clean
     parser.addCommand('clean');
+
+    // depcheck
+    parser.addCommand('depcheck')..addFlag('verbose', negatable: false, help: 'Adds verbose logging to see how package usage was identified');
 
     return parser;
   }
